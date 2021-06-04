@@ -1,4 +1,7 @@
 $.validator.setDefaults({
+  invalidHandler: function () {
+    alert("Tienes un campo mal ingresado");
+  },
   submitHandler: function () {
     alert("Tus datos han sido enviados exitosamente!");
     onclick = location.href = "home.html";
@@ -7,10 +10,8 @@ $.validator.setDefaults({
 
 $(document).ready(function () {
   $("#formulario").validate({
-    errorClass: "has-error",
-    validClass: "has-success",
     rules: {
-       nombres: {
+      nombres: {
         required: true,
         minlength: 2,
       },
@@ -32,7 +33,7 @@ $(document).ready(function () {
         equalTo: password1,
       },
 
-       //terminos y condiciones
+      //terminos y condiciones
     },
     messages: {
       //mensajes de error, envio sin datos
@@ -52,7 +53,7 @@ $(document).ready(function () {
 
       password1: {
         required: "Por favor, ingresa una contraseña",
-        minlength: 
+        minlength:
           "Tu contraseña debe ser de al menos 4 caracteres de longitud",
       },
 
@@ -60,16 +61,15 @@ $(document).ready(function () {
         required: "Por favor, ingresa una contraseña",
         equalTo: "Por favor, ingresa la misma contraseña de arriba",
       },
-
     },
 
-    highlight: function (element, errorClass, validClass) {
+    highlight: function (element) {
       $(element)
         .parents(".col-sm-10")
         .addClass("has-error")
         .removeClass("has-success");
     },
-    unhighlight: function (element, errorClass, validClass) {
+    unhighlight: function (element) {
       $(element)
         .parents(".col-sm-10")
         .addClass("has-success")
